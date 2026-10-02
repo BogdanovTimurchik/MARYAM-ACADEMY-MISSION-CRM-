@@ -1,0 +1,6 @@
+{
+  "name": "Maryam Academy Mission CRM",
+  "description": "Clean Light UI CRM/ERP-система Академии IT и Языков Maryam Academy Mission (MAM) с 11 учетными записями (руководство, персонал и 6 преподавателей), изолированными кабинетами, умной POS-кассой, Z-отчетами и реестром мини-групп 1:5.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

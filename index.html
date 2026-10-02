@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maryam Academy Mission (MAM) — IT va Tillar Akademiyasi | Marg'ilon</title>
+  <meta name="description" content="Академия IT и Иностранных Языков Maryam Academy Mission в Маргилане. Мини-группы 1:5, персональные ноутбуки 1:1, Python, Web, Дизайн, Английский, Корейский, Немецкий." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons & FontAwesome -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            mam: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg-body: #F8FAFC;
+      --text-body: #0F172A;
+    }
+    html.dark {
+      --bg-body: #0B1120;
+      --text-body: #F8FAFC;
+    }
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-body);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+    .glass-nav {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .iso-room {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+    }
+    .iso-room:hover {
+      filter: drop-shadow(0 10px 15px rgba(16, 185, 129, 0.4));
+      transform: translateY(-4px);
+    }
+    /* Pulse glow */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.08); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-ring {
+      animation: pulse-ring 2.5s infinite;
+    }
+  </style>
+
+  <script>
+    // Theme initialization
+    (function() {
+      const theme = localStorage.getItem('mam_web_theme') || 'light';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-emerald-500 selection:text-white pb-16 md:pb-0">
+
+  <!-- ========================================================================= -->
+  <!-- 1. HEADER (НАВИГАЦИЯ, ЛОГОТИП, ПЕРЕКЛЮЧАТЕЛИ) -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 w-full glass-nav bg-white/90 dark:bg-slate-900/90 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
+      <!-- LOGO: SVG & BRAND NAME -->
+      <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-white dark:bg-slate-900 rounded-[14px] flex items-center justify-center p-2">
+            <!-- Custom Vector MAM Emblem -->
+            <svg viewBox="0 0 100 100" class="w-full h-full text-emerald-600 dark:text-emerald-400 fill-current">
+              <path d="M15 80 L35 25 L50 60 L65 25 L85 80 L70 80 L60 48 L50 72 L40 48 L30 80 Z" />
+              <circle cx="50" cy="20" r="7" fill="#10B981" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white">MARYAM</span>
+            <span class="text-xs px-2 py-0.5 rounded-full font-bold bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700">MAM</span>
+          </div>
+          <p class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 tracking-wider">ACADEMY MISSION • MARG'ILON</p>
+        </div>
+      </a>
+
+      <!-- DESKTOP NAVIGATION -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#courses" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_courses">Курсы</a>
+        <a href="#quiz" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_quiz">Тест-Квиз</a>
+        <a href="#teachers" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_teachers">Учителя</a>
+        <a href="#floor-map" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_map">3D Кабинеты</a>
+        <a href="#verify" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_verify">Проверка баланса</a>
+        <a href="#faq" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_faq">FAQ</a>
+        <a href="#contacts" class="hover:text-emerald-600 dark:hover:text-emerald-400 transition" data-i18n="nav_contacts">Контакты</a>
+        <a href="/crm.html" class="px-2.5 py-1 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-bold hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition flex items-center gap-1.5 shadow-2xs">
+          <i class="fa-solid fa-shield-halved text-emerald-600 dark:text-emerald-400"></i>
+          <span>CRM / ERP</span>
+        </a>
+      </nav>
+
+      <!-- CONTROLS: THEME, LANG & CTA -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <!-- Language Switcher -->
+        <button type="button" onclick="toggleLanguage()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-xs font-bold text-slate-800 dark:text-slate-200 transition flex items-center gap-1.5 cursor-pointer shadow-2xs" title="Переключить язык">
+          <span>🌐</span>
+          <span id="lang-btn-text" class="font-mono">RU</span>
+        </button>
+
+        <!-- Theme Switcher -->
+        <button type="button" onclick="toggleTheme()" id="theme-btn" class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 flex items-center justify-center transition cursor-pointer shadow-2xs" title="Светлая / Тёмная тема">
+          <i class="fa-solid fa-moon text-amber-500"></i>
+        </button>
+
+        <!-- CTA Free Trial Button -->
+        <a href="#sinov-darsi" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs shadow-md shadow-emerald-500/20 transition-all hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
+          <i class="fa-solid fa-bolt"></i>
+          <span data-i18n="btn_free_trial">Бесплатный урок</span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button type="button" onclick="toggleMobileMenu()" class="lg:hidden w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 flex items-center justify-center transition">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MOBILE DROPDOWN MENU -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 px-4 pt-3 pb-5 space-y-3">
+      <a href="#courses" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_courses">Курсы</a>
+      <a href="#quiz" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_quiz">Тест-Квиз</a>
+      <a href="#teachers" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_teachers">Учителя</a>
+      <a href="#floor-map" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_map">3D Кабинеты</a>
+      <a href="#verify" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_verify">Проверка баланса</a>
+      <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_faq">FAQ</a>
+      <a href="#contacts" onclick="toggleMobileMenu()" class="block py-2 text-sm font-bold text-slate-700 dark:text-slate-200" data-i18n="nav_contacts">Контакты</a>
+      <a href="/crm.html" class="block py-2 text-xs font-mono text-emerald-600 dark:text-emerald-400 font-bold">🔐 Вход в CRM (Персонал)</a>
+      <a href="#sinov-darsi" onclick="toggleMobileMenu()" class="block w-full text-center py-3 bg-emerald-600 text-white rounded-xl font-bold text-sm" data-i18n="btn_free_trial">Записаться на бесплатный урок</a>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO SECTION (ГЛАВНЫЙ БАННЕР) -->
+  <!-- ========================================================================= -->
+  <section class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+    <!-- Background glow decor -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-emerald-500/20 to-teal-400/10 blur-[100px] rounded-full pointer-events-none -z-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-6">
+        
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-950/70 border border-emerald-300 dark:border-emerald-700 text-emerald-800 dark:text-emerald-300 text-xs font-bold tracking-wide shadow-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 pulse-ring"></span>
+          <span data-i18n="hero_badge">Новый набор в Маргилане: Мини-группы 1:5</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.15]" data-i18n="hero_title">
+          Освой IT и Иностранные Языки в Академии MAM в Маргилане
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed" data-i18n="hero_subtitle">
+          Премиальный образовательный стандарт: всего 5 учеников в группе, персональный ноутбук для каждого студента, топовые наставники и международный сертификат.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
+          <a href="#quiz" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-extrabold text-sm shadow-xl shadow-emerald-500/25 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <span data-i18n="btn_quiz">Пройти тест и подобрать курс</span>
+          </a>
+          <a href="#sinov-darsi" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 border-2 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-white font-extrabold text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-calendar-check text-emerald-600 dark:text-emerald-400"></i>
+            <span data-i18n="btn_sinov">Записаться на Sinov Darsi</span>
+          </a>
+        </div>
+
+        <!-- Trust Metric Pills -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-8 border-t border-slate-200/80 dark:border-slate-800/80 text-left">
+          <div class="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs">
+            <div class="font-black text-xl sm:text-2xl text-emerald-600 dark:text-emerald-400 font-mono">1:5</div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_ratio">Мини-группы</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs">
+            <div class="font-black text-xl sm:text-2xl text-teal-600 dark:text-teal-400 font-mono">1:1 PC</div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_laptop">Личный ноутбук</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs">
+            <div class="font-black text-xl sm:text-2xl text-blue-600 dark:text-blue-400 font-mono">18</div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_groups">Активных групп</div>
+          </div>
+          <div class="p-3.5 rounded-2xl bg-white/70 dark:bg-slate-800/70 border border-slate-200/80 dark:border-slate-700/80 shadow-2xs">
+            <div class="font-black text-xl sm:text-2xl text-purple-600 dark:text-purple-400 font-mono">100%</div>
+            <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5" data-i18n="stat_cert">Сертификат MAM</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. КАТАЛОГ КУРСОВ СО СЧЕТЧИКОМ ОСТАВШИХСЯ МЕСТ -->
+  <!-- ========================================================================= -->
+  <section id="courses" class="py-16 md:py-24 bg-slate-50/70 dark:bg-slate-900/50 border-y border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+        <div>
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 uppercase" data-i18n="courses_badge">
+            Академические Программы
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2" data-i18n="courses_title">
+            Каталог Курсов IT и Иностранных Языков
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 mt-1 max-w-xl" data-i18n="courses_subtitle">
+            Каждая группа строго ограничена 5 местами для максимального внимания наставника. Отслеживайте количество свободных мест в реальном времени.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex items-center gap-2 font-mono text-xs">
+          <button type="button" onclick="filterCourses('all')" id="filter-all" class="px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold transition shadow-xs cursor-pointer">
+            Все курсы (6)
+          </button>
+          <button type="button" onclick="filterCourses('it')" id="filter-it" class="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 font-bold transition cursor-pointer">
+            💻 IT (3)
+          </button>
+          <button type="button" onclick="filterCourses('lang')" id="filter-lang" class="px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 font-bold transition cursor-pointer">
+            🗣 Языки (3)
+          </button>
+        </div>
+      </div>
+
+      <!-- Courses Grid -->
+      <div id="courses-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Course 1: Python -->
+        <div class="course-card it-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-emerald-100 dark:bg-emerald-950/80 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold">
+                <i class="fa-brands fa-python"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                IT-НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 transition">Python Junior & AI Data</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                Синтаксис, ООП, парсинг данных, разработка Telegram-ботов и алгоритмы ИИ. Закрепленный ноутбук.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-emerald-500 text-xs"></i> <span>Длительность: 6 месяцев (12 зан/мес)</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-emerald-500 text-xs"></i> <span>Наставник: Каримов Ислом</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-emerald-600 dark:text-emerald-400">Осталось 2 из 5 мест</span>
+              </div>
+              <!-- Progress bar (3 filled / 5 total = 60%) -->
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-400 rounded-full" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,450,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('Python Junior & AI Data')" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 2: Web -->
+        <div class="course-card it-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-blue-100 dark:bg-blue-950/80 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-globe"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                IT-НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 transition">Веб-разработка FullStack</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                HTML5, modern CSS/Tailwind, JavaScript, React.js и серверный Node.js. 8 реальных пет-проектов в портфолио.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-blue-500 text-xs"></i> <span>Длительность: 7 месяцев (12 зан/мес)</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-blue-500 text-xs"></i> <span>Наставник: Смирнов Алексей</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-amber-600 dark:text-amber-400">Осталось 1 из 5 мест!</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-orange-400 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,450,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('Веб-разработка FullStack')" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 3: Design -->
+        <div class="course-card it-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-400 flex items-center justify-center text-xl font-bold">
+                <i class="fa-solid fa-bezier-curve"></i>
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">
+                IT-НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 transition">UI/UX & Графический Дизайн</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                Figma, Adobe Photoshop & Illustrator, создание дизайн-систем, мобильных приложений и брендинга для бизнеса.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-purple-500 text-xs"></i> <span>Длительность: 5 месяцев (12 зан/мес)</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-purple-500 text-xs"></i> <span>Наставник: Абдуллаева Лола</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-emerald-600 dark:text-emerald-400">Осталось 3 из 5 мест</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,350,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('UI/UX & Графический Дизайн')" class="px-3.5 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 4: English -->
+        <div class="course-card lang-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl font-bold">
+                🇬🇧
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                ЯЗЫКОВОЕ НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition">General English & IELTS Prep</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                Английский от Elementary до IELTS 7.5+. Разговорный клуб с носителем, наушники HyperX в лингафонном кабинете.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-indigo-500 text-xs"></i> <span>Длительность: модули по 3 мес</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-indigo-500 text-xs"></i> <span>Наставник: Роберт Эванс (IELTS 8.5)</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-amber-600 dark:text-amber-400">Осталось 2 из 5 мест</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-indigo-500 to-blue-400 rounded-full" style="width: 60%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,100,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('General English & IELTS Prep')" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 5: German -->
+        <div class="course-card lang-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-amber-100 dark:bg-amber-950/80 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xl font-bold">
+                🇩🇪
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                ЯЗЫКОВОЕ НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-amber-600 transition">Немецкий язык Goethe A1-B2</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                Подготовка к учебе и работе в Германии (Ausbildung, ВУЗы). Сертифицированная методика Goethe-Zertifikat.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-amber-500 text-xs"></i> <span>Длительность: 6-8 месяцев</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-amber-500 text-xs"></i> <span>Наставник: Шмидт Ханс</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-emerald-600 dark:text-emerald-400">Осталось 3 из 5 мест</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-amber-500 to-yellow-400 rounded-full" style="width: 40%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,150,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('Немецкий язык Goethe A1-B2')" class="px-3.5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Course 6: Korean -->
+        <div class="course-card lang-course bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 flex flex-col justify-between shadow-xs hover:shadow-xl transition-all group">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="w-12 h-12 rounded-2xl bg-rose-100 dark:bg-rose-950/80 text-rose-600 dark:text-rose-400 flex items-center justify-center text-xl font-bold">
+                🇰🇷
+              </span>
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300">
+                ЯЗЫКОВОЕ НАПРАВЛЕНИЕ
+              </span>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-rose-600 transition">Корейский язык TOPIK I & II</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">
+                Подготовка к грантам GKS и сдаче экзамена TOPIK. Полное погружение в произношение и грамматику с носителем.
+              </p>
+            </div>
+            <div class="space-y-1.5 text-xs text-slate-600 dark:text-slate-300 font-medium">
+              <div class="flex items-center gap-2"><i class="fa-solid fa-clock text-rose-500 text-xs"></i> <span>Длительность: 6 месяцев</span></div>
+              <div class="flex items-center gap-2"><i class="fa-solid fa-chalkboard-user text-rose-500 text-xs"></i> <span>Наставник: Ким Мин Джи</span></div>
+            </div>
+          </div>
+
+          <!-- Live Seats Counter Widget -->
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700/80 space-y-3">
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-mono font-bold">
+                <span class="text-slate-600 dark:text-slate-300">Свободные места:</span>
+                <span class="text-amber-600 dark:text-amber-400">Осталось 1 из 5 мест!</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-rose-500 to-pink-400 rounded-full" style="width: 80%"></div>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block font-mono">Абонемент:</span>
+                <span class="font-extrabold text-sm text-slate-900 dark:text-white font-mono">1,150,000 UZS</span>
+              </div>
+              <button onclick="selectCourseToEnroll('Корейский язык TOPIK I & II')" class="px-3.5 py-2 bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs rounded-xl shadow-xs transition flex items-center gap-1.5 cursor-pointer">
+                <span>Записаться</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. ИНТЕРАКТИВНЫЙ КВИЗ ПОДБОРА КУРСА (3-STEP QUIZ) -->
+  <!-- ========================================================================= -->
+  <section id="quiz" class="py-16 md:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-gradient-to-br from-emerald-600 via-teal-700 to-emerald-900 rounded-3xl p-6 sm:p-10 text-white shadow-2xl relative overflow-hidden">
+        <!-- Background light orb -->
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/20">
+            <div>
+              <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/20 text-emerald-200 uppercase tracking-wider">
+                Умный тест за 60 секунд
+              </span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold mt-1">Подберите идеальный курс и получите скидку 10%</h2>
+            </div>
+            <!-- Quiz Step Counter -->
+            <div class="font-mono text-sm bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/20 font-bold self-start">
+              Шаг <span id="quiz-step-num">1</span> из 3
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full h-2 rounded-full bg-white/20 overflow-hidden">
+            <div id="quiz-progress-bar" class="h-full bg-emerald-300 rounded-full transition-all duration-300" style="width: 33.3%"></div>
+          </div>
+
+          <!-- QUESTION STEP 1: ВОЗРАСТ -->
+          <div id="quiz-step-1" class="quiz-step space-y-4">
+            <h3 class="text-lg sm:text-xl font-bold">1. Для кого планируется обучение и какой возраст?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-900">
+              <button type="button" onclick="selectQuizAnswer(1, 'Дети 9-13 лет (Школьники)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🧒 Дети 9-13 лет (Школьники)</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(1, 'Подростки 14-17 лет (Старшеклассники)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🧑 Подростки 14-17 лет</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(1, 'Студенты ВУЗов (18-22 года)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🎓 Студенты ВУЗов (18-22 года)</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(1, 'Взрослые 23+ (Смена профессии / Карьера)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>💼 Взрослые 23+ (Смена профессии)</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- QUESTION STEP 2: ЦЕЛЬ -->
+          <div id="quiz-step-2" class="quiz-step hidden space-y-4">
+            <h3 class="text-lg sm:text-xl font-bold">2. Какая главная цель вашего обучения?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-900">
+              <button type="button" onclick="selectQuizAnswer(2, 'IT-профессия и заработок на фрилансе/в IT-компании')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>💻 Освоить востребованную IT-профессию</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(2, 'Учеба за границей (IELTS, Германия, Корея)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>✈️ Поступление в зарубежный ВУЗ / Грант</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(2, 'Развитие логики, программирование ботов и сайтов')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🧠 Развитие мышления и создание проектов</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(2, 'Свободное общение на иностранном языке')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🗣 Свободный разговорный язык</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- QUESTION STEP 3: ОПЫТ -->
+          <div id="quiz-step-3" class="quiz-step hidden space-y-4">
+            <h3 class="text-lg sm:text-xl font-bold">3. Был ли у вас предыдущий опыт?</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-slate-900">
+              <button type="button" onclick="selectQuizAnswer(3, 'Полный новичок (с нуля)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>🌱 Начинаю абсолютно с нуля</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+              <button type="button" onclick="selectQuizAnswer(3, 'Есть базовые знания (самоучка/школа)')" class="quiz-opt-btn p-4 rounded-2xl bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-400 font-semibold text-left transition cursor-pointer flex items-center justify-between shadow-xs">
+                <span>📚 Есть базовые школьные знания</span>
+                <i class="fa-solid fa-chevron-right text-slate-400 text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- QUIZ RESULT MODAL / CONTAINER -->
+          <div id="quiz-result" class="hidden space-y-4 bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+            <div class="flex items-center gap-3">
+              <span class="w-12 h-12 rounded-2xl bg-emerald-400 text-slate-950 flex items-center justify-center text-xl font-black">
+                🎉
+              </span>
+              <div>
+                <span class="text-xs uppercase font-mono tracking-wider text-emerald-200">Ваш персональный результат:</span>
+                <h4 id="quiz-recommended-course" class="text-xl sm:text-2xl font-black text-white">Python Junior & AI Data</h4>
+              </div>
+            </div>
+
+            <p id="quiz-recommended-desc" class="text-sm text-emerald-100">
+              На основе ваших ответов данная программа позволит достичь максимального прогресса в мини-группе 1:5.
+            </p>
+
+            <!-- Promo bonus box -->
+            <div class="p-3.5 rounded-xl bg-white/20 border border-white/30 flex items-center justify-between">
+              <div>
+                <span class="text-xs font-mono font-bold block text-emerald-200">ВАШ БОНУС АКТИВИРОВАН:</span>
+                <span class="font-extrabold text-sm text-white">Скидка 10% на первый месяц обучения</span>
+              </div>
+              <span class="px-3 py-1 rounded-lg bg-emerald-400 text-slate-950 font-mono font-extrabold text-xs">
+                MAM-PROMO10
+              </span>
+            </div>
+
+            <!-- Fast Contact input to claim -->
+            <div class="pt-2 flex flex-col sm:flex-row gap-2">
+              <input type="tel" id="quiz-phone-input" placeholder="+998 (90) 123-45-67" class="flex-1 p-3 rounded-xl bg-white text-slate-900 font-mono font-bold placeholder-slate-400 focus:outline-none">
+              <button type="button" onclick="submitQuizResult()" class="px-6 py-3 rounded-xl bg-slate-950 hover:bg-slate-900 text-emerald-400 font-extrabold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-lg">
+                <i class="fa-brands fa-telegram text-base"></i>
+                <span>Забрать скидку в Telegram</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. НАШИ ПРЕПОДАВАТЕЛИ С 3D-АВАТАРАМИ И ВИДЕО-ВИЗИТКАМИ -->
+  <!-- ========================================================================= -->
+  <section id="teachers" class="py-16 md:py-24 bg-slate-50/70 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300 border border-purple-200 dark:border-purple-800 uppercase" data-i18n="teachers_badge">
+          Команда Наставников MAM
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" data-i18n="teachers_title">
+          Преподаватели-Эксперты IT и Иностранных Языков
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="teachers_subtitle">
+          За каждым закреплены строго 3 уникальные группы. Посмотрите 15-секундную видео-визитку преподавателя перед записью.
+        </p>
+      </div>
+
+      <!-- Teachers 6 Cards Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Teacher 1: Python -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <!-- 3D Avatar Box -->
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-emerald-600 via-teal-600 to-emerald-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <!-- SVG 3D Developer Avatar -->
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FBBF24" />
+                <!-- Hair & Headset -->
+                <path d="M30 45 Q60 20 90 45" stroke="#1E293B" stroke-width="8" fill="none" stroke-linecap="round" />
+                <rect x="24" y="42" width="10" height="18" rx="4" fill="#0F172A" />
+                <rect x="86" y="42" width="10" height="18" rx="4" fill="#0F172A" />
+                <!-- Glasses -->
+                <rect x="42" y="44" width="14" height="10" rx="3" fill="#0284C7" opacity="0.8" />
+                <rect x="64" y="44" width="14" height="10" rx="3" fill="#0284C7" opacity="0.8" />
+                <line x1="56" y1="49" x2="64" y2="49" stroke="#0F172A" stroke-width="2" />
+                <!-- Smile -->
+                <path d="M50 64 Q60 72 70 64" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <!-- Body / Hoodie -->
+                <path d="M25 110 Q60 85 95 110" fill="#065F46" />
+                <!-- Python logo on hoodie -->
+                <circle cx="60" cy="98" r="6" fill="#38BDF8" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-emerald-300 backdrop-blur-xs">
+                🐍 Lead Python
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Каримов Ислом</h3>
+              <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 font-mono">Python Junior & AI Data Lead</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Опыт коммерческой разработки 5+ лет. Автор 4 курсов по AI-ботам и алгоритмам. Выпустил более 180 IT-студентов.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Каримов Ислом', 'Python Junior & AI Data', 'py')" class="w-full py-2.5 px-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/60 hover:bg-emerald-100 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-emerald-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher 2: Web -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-sky-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FED7AA" />
+                <!-- Modern Haircut -->
+                <path d="M35 45 Q60 15 85 45" stroke="#334155" stroke-width="10" fill="none" stroke-linecap="round" />
+                <!-- Glasses Round -->
+                <circle cx="48" cy="48" r="7" stroke="#1E293B" stroke-width="2" fill="#E0F2FE" opacity="0.8" />
+                <circle cx="72" cy="48" r="7" stroke="#1E293B" stroke-width="2" fill="#E0F2FE" opacity="0.8" />
+                <line x1="55" y1="48" x2="65" y2="48" stroke="#1E293B" stroke-width="2" />
+                <!-- Smile -->
+                <path d="M52 64 Q60 70 68 64" stroke="#0F172A" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <!-- Hoodie -->
+                <path d="M25 110 Q60 85 95 110" fill="#1E3A8A" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-blue-300 backdrop-blur-xs">
+                🌐 FullStack Lead
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Смирнов Алексей</h3>
+              <p class="text-xs font-semibold text-blue-600 dark:text-blue-400 font-mono">Веб-разработка FullStack</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Senior Frontend & Node.js инженер. Учит созданию высоконагруженных веб-сервисов и адаптивных SPA-приложений.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Смирнов Алексей', 'Веб-разработка FullStack', 'web')" class="w-full py-2.5 px-4 rounded-xl bg-blue-50 dark:bg-blue-950/60 hover:bg-blue-100 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-blue-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher 3: Design -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-purple-600 via-pink-600 to-rose-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FDE68A" />
+                <!-- Long Hair -->
+                <path d="M30 45 Q60 15 90 45 Q90 85 85 95" stroke="#4C1D95" stroke-width="8" fill="none" stroke-linecap="round" />
+                <!-- Eyes & Smile -->
+                <circle cx="48" cy="48" r="3" fill="#1E293B" />
+                <circle cx="72" cy="48" r="3" fill="#1E293B" />
+                <path d="M52 63 Q60 72 68 63" stroke="#1E293B" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <!-- Stylish Outfit -->
+                <path d="M25 110 Q60 85 95 110" fill="#831843" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-purple-300 backdrop-blur-xs">
+                🎨 UI/UX Lead
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Абдуллаева Лола</h3>
+              <p class="text-xs font-semibold text-purple-600 dark:text-purple-400 font-mono">UI/UX & Графический Дизайн</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Арт-директор с 6-летним стажем. Учит прототипированию в Figma, мокапам, типографике и созданию готового дизайн-кейса.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Абдуллаева Лола', 'UI/UX & Графический Дизайн', 'design')" class="w-full py-2.5 px-4 rounded-xl bg-purple-50 dark:bg-purple-950/60 hover:bg-purple-100 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-purple-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher 4: English -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FED7AA" />
+                <path d="M35 42 Q60 18 85 42" stroke="#78350F" stroke-width="8" fill="none" stroke-linecap="round" />
+                <circle cx="48" cy="48" r="3" fill="#1E293B" />
+                <circle cx="72" cy="48" r="3" fill="#1E293B" />
+                <path d="M52 64 Q60 70 68 64" stroke="#1E293B" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <!-- British tie & collar -->
+                <path d="M25 110 Q60 85 95 110" fill="#1E1B4B" />
+                <polygon points="60,92 56,110 64,110" fill="#DC2626" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-indigo-300 backdrop-blur-xs">
+                🇬🇧 IELTS 8.5
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Роберт Эванс</h3>
+              <p class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 font-mono">General English & IELTS</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Преподаватель из Великобритании, сертификат CELTA, IELTS 8.5. 7 лет готовит к международным языковым экзаменам.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Роберт Эванс', 'General English & IELTS', 'eng')" class="w-full py-2.5 px-4 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 text-indigo-700 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-indigo-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher 5: German -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-amber-600 via-orange-600 to-yellow-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FEF08A" />
+                <path d="M35 44 Q60 22 85 44" stroke="#451A03" stroke-width="8" fill="none" stroke-linecap="round" />
+                <!-- Neat Glasses -->
+                <rect x="42" y="44" width="13" height="9" rx="2" stroke="#1E293B" stroke-width="2" fill="none" />
+                <rect x="65" y="44" width="13" height="9" rx="2" stroke="#1E293B" stroke-width="2" fill="none" />
+                <line x1="55" y1="48" x2="65" y2="48" stroke="#1E293B" stroke-width="2" />
+                <path d="M52 64 Q60 70 68 64" stroke="#1E293B" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <path d="M25 110 Q60 85 95 110" fill="#78350F" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-amber-300 backdrop-blur-xs">
+                🇩🇪 Goethe C2
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Шмидт Ханс</h3>
+              <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 font-mono">Немецкий язык Goethe A1-B2</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Выпускник Humboldt-Universitat zu Berlin. Специалист по программе Ausbildung и подготовке врачей/инженеров.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Шмидт Ханс', 'Немецкий язык Goethe', 'ger')" class="w-full py-2.5 px-4 rounded-xl bg-amber-50 dark:bg-amber-950/60 hover:bg-amber-100 text-amber-700 dark:text-amber-300 border border-amber-300 dark:border-amber-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-amber-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher 6: Korean -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 border border-slate-200 dark:border-slate-700 shadow-xs hover:shadow-xl transition-all group flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="relative w-full h-44 rounded-2xl bg-gradient-to-tr from-rose-600 via-pink-600 to-amber-400 flex items-center justify-center overflow-hidden shadow-inner group-hover:scale-[1.02] transition-transform">
+              <svg viewBox="0 0 120 120" class="w-28 h-28 drop-shadow-2xl">
+                <circle cx="60" cy="50" r="30" fill="#FED7AA" />
+                <path d="M30 45 Q60 16 90 45" stroke="#18181B" stroke-width="9" fill="none" stroke-linecap="round" />
+                <circle cx="48" cy="48" r="3" fill="#1E293B" />
+                <circle cx="72" cy="48" r="3" fill="#1E293B" />
+                <path d="M52 64 Q60 70 68 64" stroke="#1E293B" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                <path d="M25 110 Q60 85 95 110" fill="#881337" />
+              </svg>
+              <span class="absolute top-3 right-3 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-black/40 text-rose-300 backdrop-blur-xs">
+                🇰🇷 TOPIK 6
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white">Ким Мин Джи</h3>
+              <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 font-mono">Корейский язык TOPIK</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+                Носитель языка из Сеула, магистр филологии Yonsei University. 95% её студентов успешно сдают TOPIK II.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-700">
+            <button onclick="openVideoGreeting('Ким Мин Джи', 'Корейский язык TOPIK', 'kor')" class="w-full py-2.5 px-4 rounded-xl bg-rose-50 dark:bg-rose-950/60 hover:bg-rose-100 text-rose-700 dark:text-rose-300 border border-rose-300 dark:border-rose-700 font-bold text-xs transition flex items-center justify-center gap-2 cursor-pointer shadow-2xs">
+              <i class="fa-solid fa-circle-play text-rose-600"></i>
+              <span>Смотреть видео-визитку (15 сек)</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. 3D ИЗОМЕТРИЧЕСКАЯ КАРТА КАБИНЕТОВ (3D FLOOR MAP) -->
+  <!-- ========================================================================= -->
+  <section id="floor-map" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800 uppercase" data-i18n="map_badge">
+          Филиал Маргилан • Ул. Б. Маргинони, 42
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" data-i18n="map_title">
+          3D Интерактивная Карта Кабинетов Академии
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="map_subtitle">
+          Нажмите на любой кабинет на изометрической 3D-схеме, чтобы узнать закрепленного преподавателя, направление и расписание смен.
+        </p>
+      </div>
+
+      <!-- Main Layout: Map + Active Room Details Card -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        
+        <!-- 3D SVG Map Viewport (2 cols) -->
+        <div class="lg:col-span-2 bg-white dark:bg-slate-800 p-4 sm:p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm relative overflow-hidden">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-700 text-xs font-mono">
+            <span class="text-slate-500 flex items-center gap-1.5"><i class="fa-solid fa-cube text-emerald-500"></i> Изометрический план 1-го этажа</span>
+            <span class="text-emerald-600 font-bold">● Кликните на кабинет</span>
+          </div>
+
+          <!-- Interactive Isometric SVG Room Blueprint -->
+          <svg viewBox="0 0 800 500" class="w-full h-auto drop-shadow-md select-none mt-2">
+            <!-- Floor Shadow Base -->
+            <polygon points="400,60 760,240 400,420 40,240" fill="#E2E8F0" class="dark:fill-slate-700/50" />
+            <polygon points="400,50 760,230 400,410 40,230" fill="#F8FAFC" class="dark:fill-slate-900" stroke="#CBD5E1" stroke-width="2" class="dark:stroke-slate-700" />
+
+            <!-- ROOM 1: PYTHON LAB -->
+            <g class="iso-room" onclick="selectFloorRoom(1)">
+              <polygon points="120,200 240,140 320,180 200,240" fill="#10B981" fill-opacity="0.85" stroke="#059669" stroke-width="2" />
+              <polygon points="120,200 200,240 200,260 120,220" fill="#047857" />
+              <polygon points="200,240 320,180 320,200 200,260" fill="#065F46" />
+              <text x="210" y="195" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#1 Python Lab</text>
+            </g>
+
+            <!-- ROOM 2: WEB DEV LAB -->
+            <g class="iso-room" onclick="selectFloorRoom(2)">
+              <polygon points="260,130 380,70 460,110 340,170" fill="#3B82F6" fill-opacity="0.85" stroke="#2563EB" stroke-width="2" />
+              <polygon points="260,130 340,170 340,190 260,150" fill="#1D4ED8" />
+              <polygon points="340,170 460,110 460,130 340,190" fill="#1E40AF" />
+              <text x="350" y="125" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#2 Web Lab</text>
+            </g>
+
+            <!-- ROOM 3: DESIGN STUDIO -->
+            <g class="iso-room" onclick="selectFloorRoom(3)">
+              <polygon points="400,60 520,120 440,160 320,100" fill="#A855F7" fill-opacity="0.85" stroke="#9333EA" stroke-width="2" />
+              <polygon points="320,100 440,160 440,180 320,120" fill="#7E22CE" />
+              <polygon points="440,160 520,120 520,140 440,180" fill="#6B21A8" />
+              <text x="420" y="115" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#3 Design Lab</text>
+            </g>
+
+            <!-- ROOM 4: ENGLISH LAB -->
+            <g class="iso-room" onclick="selectFloorRoom(4)">
+              <polygon points="220,250 340,190 420,230 300,290" fill="#6366F1" fill-opacity="0.85" stroke="#4F46E5" stroke-width="2" />
+              <polygon points="220,250 300,290 300,310 220,270" fill="#4338CA" />
+              <polygon points="300,290 420,230 420,250 300,310" fill="#3730A3" />
+              <text x="310" y="245" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#4 English Lab</text>
+            </g>
+
+            <!-- ROOM 5: GERMAN LAB -->
+            <g class="iso-room" onclick="selectFloorRoom(5)">
+              <polygon points="360,180 480,120 560,160 440,220" fill="#F59E0B" fill-opacity="0.85" stroke="#D97706" stroke-width="2" />
+              <polygon points="360,180 440,220 440,240 360,200" fill="#B45309" />
+              <polygon points="440,220 560,160 560,180 440,240" fill="#92400E" />
+              <text x="450" y="175" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#5 German Lab</text>
+            </g>
+
+            <!-- ROOM 6: KOREAN LAB -->
+            <g class="iso-room" onclick="selectFloorRoom(6)">
+              <polygon points="460,210 580,150 660,190 540,250" fill="#F43F5E" fill-opacity="0.85" stroke="#E11D48" stroke-width="2" />
+              <polygon points="460,210 540,250 540,270 460,230" fill="#BE123C" />
+              <polygon points="540,250 660,190 660,210 540,270" fill="#9F1239" />
+              <text x="550" y="205" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">#6 Korean Lab</text>
+            </g>
+
+            <!-- CENTRAL RECEPTION & LOUNGE -->
+            <g class="iso-room" onclick="selectFloorRoom(0)">
+              <polygon points="320,300 440,240 520,280 400,340" fill="#0EA5E9" fill-opacity="0.9" stroke="#0284C7" stroke-width="2" />
+              <polygon points="320,300 400,340 400,360 320,320" fill="#0369A1" />
+              <polygon points="400,340 520,280 520,300 400,360" fill="#075985" />
+              <text x="410" y="295" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="bold" text-anchor="middle">🏫 Ресепшен / Холл</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Room Details Live Card -->
+        <div id="room-details-card" class="bg-white dark:bg-slate-800 p-6 rounded-3xl border-2 border-emerald-500 shadow-xl space-y-4">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+            <span class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300" id="card-room-badge">
+              АУДИТОРИЯ #1
+            </span>
+            <span class="text-xs font-mono text-slate-400 font-bold" id="card-room-equipment">5 Ноутбуков Lenovo ThinkBook</span>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-extrabold text-slate-900 dark:text-white" id="card-room-title">Python Junior & AI Lab</h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" id="card-room-desc">
+              Специализированная лаборатория программирования. Эргономичные столы 1:5, бесшумный климат-контроль Gree, проводной гигабитный интернет.
+            </p>
+          </div>
+
+          <div class="space-y-2 text-xs font-mono">
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 flex justify-between items-center">
+              <span class="text-slate-500">Преподаватель:</span>
+              <span class="font-bold text-slate-900 dark:text-white" id="card-room-teacher">Каримов Ислом</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 flex justify-between items-center">
+              <span class="text-slate-500">График смен:</span>
+              <span class="font-bold text-emerald-600 dark:text-emerald-400" id="card-room-schedule">Пн-Ср-Пт (09:00 / 14:00)</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 flex justify-between items-center">
+              <span class="text-slate-500">Вместимость:</span>
+              <span class="font-bold text-purple-600 dark:text-purple-400" id="card-room-capacity">5 мест (Стандарт 1:5)</span>
+            </div>
+          </div>
+
+          <button onclick="enrollIntoActiveRoom()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-chair"></i>
+            <span>Занять место в этой аудитории</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. ФОРМА ЗАПИСИ НА "SINOV DARSI" (ПРОБНЫЙ УРОК) -->
+  <!-- ========================================================================= -->
+  <section id="sinov-darsi" class="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-700 shadow-xl space-y-6">
+        <div class="text-center max-w-xl mx-auto space-y-2">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 border border-amber-300 uppercase">
+            🌟 БЕСПЛАТНЫЙ ПРОБНЫЙ УРОК
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white" data-i18n="sinov_title">
+            Запишитесь на Пробный Урок (Sinov Darsi)
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400" data-i18n="sinov_subtitle">
+            Попробуйте обучение в мини-группе 1:5, познакомьтесь с преподавателем и проверьте уровень знаний абсолютно бесплатно.
+          </p>
+        </div>
+
+        <form id="sinov-form" onsubmit="handleSinovSubmit(event)" class="space-y-4 max-w-2xl mx-auto">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" data-i18n="form_name">ФИО Ученика или Родителя:</label>
+              <input type="text" id="sinov-name" required placeholder="Алиев Тимур" class="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" data-i18n="form_phone">Номер телефона (+998):</label>
+              <input type="tel" id="sinov-phone" required placeholder="+998 (90) 123-45-67" class="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl font-mono text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1" data-i18n="form_course">Выберите направление обучения:</label>
+            <select id="sinov-course" class="w-full p-3 bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl text-xs sm:text-sm font-bold text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+              <option value="Python Junior & AI Data">🐍 Python Junior & AI Data (IT-направление)</option>
+              <option value="Веб-разработка FullStack">🌐 Веб-разработка FullStack (IT-направление)</option>
+              <option value="UI/UX & Графический Дизайн">🎨 UI/UX & Графический Дизайн (IT-направление)</option>
+              <option value="General English & IELTS">🇬🇧 General English & IELTS (Языковое)</option>
+              <option value="Немецкий язык Goethe">🇩🇪 Немецкий язык Goethe (Языковое)</option>
+              <option value="Корейский язык TOPIK">🇰🇷 Корейский язык TOPIK (Языковое)</option>
+            </select>
+          </div>
+
+          <div class="pt-2">
+            <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 text-white font-black text-sm shadow-lg shadow-emerald-500/25 transition-all flex items-center justify-center gap-2 cursor-pointer">
+              <i class="fa-brands fa-telegram text-base"></i>
+              <span data-i18n="form_btn">Записаться через Telegram ресепшена</span>
+            </button>
+            <p class="text-[11px] text-center text-slate-400 mt-2 font-mono">
+              После отправки заявка мгновенно передается дежурному координатору MAM в г. Маргилан.
+            </p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 8. ЭКСПРЕСС-ПРОВЕРКА БАЛАНСА И СЕРТИФИКАТОВ -->
+  <!-- ========================================================================= -->
+  <section id="verify" class="py-16 md:py-24 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 border border-blue-200 uppercase" data-i18n="verify_badge">
+          Студенческий Сервис MAM
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" data-i18n="verify_title">
+          Экспресс-Проверка Баланса и Сертификатов
+        </h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400" data-i18n="verify_subtitle">
+          Узнайте остаток оплаченных занятий по номеру телефона или проверьте подлинность диплома выпускника по ID.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Tool 1: Balance Check -->
+        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-700">
+            <span class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-lg">
+              <i class="fa-solid fa-wallet"></i>
+            </span>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 dark:text-white">Проверка Баланса Занятий</h3>
+              <p class="text-xs text-slate-400">По номеру телефона студента (+998)</p>
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <input type="tel" id="check-phone-input" placeholder="+998 (90) 123-45-67" class="flex-1 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-emerald-500">
+            <button onclick="checkStudentBalance()" class="px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl transition cursor-pointer">
+              Проверить
+            </button>
+          </div>
+
+          <!-- Balance Result -->
+          <div id="balance-result-box" class="hidden p-4 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 space-y-2 text-xs font-mono">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+        <!-- Tool 2: Certificate Verification -->
+        <div class="bg-white dark:bg-slate-800 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 pb-3 border-b border-slate-100 dark:border-slate-700">
+            <span class="w-10 h-10 rounded-xl bg-purple-100 dark:bg-purple-950 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-lg">
+              <i class="fa-solid fa-award"></i>
+            </span>
+            <div>
+              <h3 class="font-extrabold text-base text-slate-900 dark:text-white">Верификация Сертификата A4</h3>
+              <p class="text-xs text-slate-400">Проверка подлинности диплома с подписью Директора</p>
+            </div>
+          </div>
+
+          <div class="flex gap-2">
+            <input type="text" id="check-cert-input" placeholder="MAM-2026-CERT-0104" class="flex-1 p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 font-mono text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-purple-500 uppercase">
+            <button onclick="checkCertificate()" class="px-4 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition cursor-pointer">
+              Верифицировать
+            </button>
+          </div>
+
+          <!-- Certificate Result -->
+          <div id="cert-result-box" class="hidden p-4 rounded-2xl bg-purple-50/70 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-800 space-y-2 text-xs">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 9. FAQ И КОНТАКТЫ -->
+  <!-- ========================================================================= -->
+  <section id="faq" class="py-16 md:py-24 bg-slate-50/70 dark:bg-slate-900/50 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-xl mx-auto space-y-2">
+        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 uppercase">
+          Частые Вопросы
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" data-i18n="faq_title">
+          Ответы на Вопросы о MAM
+        </h2>
+      </div>
+
+      <!-- Accordion -->
+      <div class="space-y-3">
+        <!-- FAQ 1 -->
+        <details class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 group" open>
+          <summary class="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center justify-between cursor-pointer list-none">
+            <span>Что означает стандарт «Мини-группы 1:5»?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 leading-relaxed">
+            В Академии Maryam Academy Mission в каждой учебной группе занимается строго до 5 человек. Это исключает фоновый шум, гарантирует персональный разбор кода и практических заданий каждого учащегося с наставником.
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 group">
+          <summary class="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center justify-between cursor-pointer list-none">
+            <span>Нужно ли приносить собственный ноутбук?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 leading-relaxed">
+            Нет, в аудиториях академии в Маргилане за каждым рабочим местом 1:1 закреплен современный ноутбук (Lenovo ThinkBook, HP ProBook, Asus) с предустановленной средой разработки, Figma и лингафонными гарнитурами.
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 group">
+          <summary class="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center justify-between cursor-pointer list-none">
+            <span>Какие способы оплаты принимаются?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 leading-relaxed">
+            Мы принимаем платежи через Click, Payme, банковские карты Uzcard / Humo через терминал, а также наличными в кассе с выдачей официального фискального чека и заключением двуязычного договора. Доступна рассрочка.
+          </p>
+        </details>
+
+        <!-- FAQ 4 -->
+        <details class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-4 sm:p-5 group">
+          <summary class="font-bold text-sm sm:text-base text-slate-900 dark:text-white flex items-center justify-between cursor-pointer list-none">
+            <span>Выдается ли официальный сертификат после выпуска?</span>
+            <i class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform group-open:rotate-180"></i>
+          </summary>
+          <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-100 dark:border-slate-700 leading-relaxed">
+            Да, каждый выпускник, успешно защитивший финальный проект или сдавший экзамен, получает именной A4-сертификат с защищенным QR-кодом верификации и личной подписью Генерального Директора Богданова Т.Я.
+          </p>
+        </details>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 10. КОНТАКТЫ И АДРЕС В МАРГИЛАНЕ -->
+  <!-- ========================================================================= -->
+  <section id="contacts" class="py-16 md:py-24 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div class="space-y-6">
+          <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 border border-emerald-200 uppercase">
+            Контакты & Локация
+          </span>
+          <h2 class="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white leading-tight">
+            Приходите в гости в Академию MAM в Маргилане
+          </h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+            Центральный филиал расположен в удобной транспортной доступности. Ждем вас на консультацию и ознакомительную экскурсию по аудиториям.
+          </p>
+
+          <div class="space-y-4 text-xs sm:text-sm">
+            <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+              <span class="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-base flex-shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Адрес филиала:</span>
+                <span class="text-slate-500 dark:text-slate-400">г. Маргилан, ул. Бурхониддина Маргинони, дом 42 (Ориентир: Центр-1)</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+              <span class="w-10 h-10 rounded-xl bg-teal-100 dark:bg-teal-950 text-teal-600 dark:text-teal-400 flex items-center justify-center font-bold text-base flex-shrink-0">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Горячая линия ресепшена:</span>
+                <a href="tel:+998901002000" class="font-mono font-bold text-emerald-600 dark:text-emerald-400 hover:underline">+998 (90) 100-20-00</a>
+                <span class="text-slate-400 block text-xs mt-0.5">Ежедневно с 08:30 до 20:00</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3.5 p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700">
+              <span class="w-10 h-10 rounded-xl bg-sky-100 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center font-bold text-base flex-shrink-0">
+                <i class="fa-brands fa-telegram"></i>
+              </span>
+              <div>
+                <span class="font-bold text-slate-900 dark:text-white block">Telegram-канал и бот:</span>
+                <a href="https://t.me/maryam_academy" target="_blank" class="text-sky-600 font-bold hover:underline">@maryam_academy</a>
+                <span class="text-slate-400 block text-xs mt-0.5">Новости, расписание открытых уроков и олимпиады</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Map Illustration Card -->
+        <div class="p-6 rounded-3xl bg-gradient-to-br from-emerald-600 to-teal-800 text-white shadow-xl space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs font-bold uppercase tracking-wider bg-white/20 px-3 py-1 rounded-full">КАРТА МАРГИЛАНА</span>
+            <span class="text-xs text-emerald-200">Ферганская область</span>
+          </div>
+          <div class="w-full h-56 rounded-2xl bg-white/10 border border-white/20 flex flex-col items-center justify-center p-4 text-center space-y-2">
+            <i class="fa-solid fa-map-location-dot text-4xl text-emerald-300"></i>
+            <h4 class="font-black text-lg">Академия Maryam Academy Mission</h4>
+            <p class="text-xs text-emerald-100 max-w-sm">ул. Б. Маргинони, 42 • В 5 минутах от центрального парка Маргилана</p>
+            <a href="https://maps.google.com/?q=Margilan" target="_blank" class="mt-2 px-4 py-2 rounded-xl bg-white text-emerald-900 font-bold text-xs hover:bg-emerald-50 transition cursor-pointer">
+              Открыть в Google Maps
+            </a>
+          </div>
+          <div class="text-[11px] text-emerald-100 flex justify-between font-mono">
+            <span>Пн-Сб: 08:30 — 20:00</span>
+            <span>Вс: Разговорные клубы</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER С ВЕКТОРНЫМ SVG ЛОГОТИПОМ -->
+  <!-- ========================================================================= -->
+  <footer class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-100 dark:border-slate-800">
+        
+        <!-- Logo -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 p-0.5">
+            <div class="w-full h-full bg-white dark:bg-slate-900 rounded-[10px] flex items-center justify-center p-1.5">
+              <svg viewBox="0 0 100 100" class="w-full h-full text-emerald-600 dark:text-emerald-400 fill-current">
+                <path d="M15 80 L35 25 L50 60 L65 25 L85 80 L70 80 L60 48 L50 72 L40 48 L30 80 Z" />
+                <circle cx="50" cy="20" r="7" fill="#10B981" />
+              </svg>
+            </div>
+          </div>
+          <div>
+            <span class="font-extrabold text-base text-slate-900 dark:text-white">MARYAM ACADEMY MISSION</span>
+            <p class="text-[10px] text-slate-400 font-mono">Академия IT и Языков в Маргилане • Стандарт 1:5</p>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-500 dark:text-slate-400">
+          <a href="#courses" class="hover:text-emerald-600 transition">Курсы</a>
+          <a href="#quiz" class="hover:text-emerald-600 transition">Тест-Квиз</a>
+          <a href="#teachers" class="hover:text-emerald-600 transition">Учителя</a>
+          <a href="#floor-map" class="hover:text-emerald-600 transition">3D Кабинеты</a>
+          <a href="#verify" class="hover:text-emerald-600 transition">Баланс & Сертификаты</a>
+          <a href="/crm.html" class="text-emerald-600 font-mono font-bold hover:underline">Внутренняя CRM (Вход)</a>
+        </div>
+
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 font-mono">
+        <p>© 2026 Maryam Academy Mission. Все права защищены. Ген. Директор: Богданов Т.Я.</p>
+        <p>г. Маргилан, ул. Бурхониддина Маргинони, 42</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 11. ПЛАВАЮЩАЯ МОБИЛЬНАЯ ПАНЕЛЬ (MOBILE CTA BAR) -->
+  <!-- ========================================================================= -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 p-2.5 flex items-center gap-2 shadow-2xl">
+    <a href="tel:+998901002000" class="flex-1 py-3 px-3 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-white font-extrabold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-xs">
+      <i class="fa-solid fa-phone text-emerald-600"></i>
+      <span>Позвонить</span>
+    </a>
+    <a href="https://t.me/maryam_academy" target="_blank" class="flex-1 py-3 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-extrabold text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md">
+      <i class="fa-brands fa-telegram text-sm"></i>
+      <span>Telegram</span>
+    </a>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 12. МОДАЛЬНОЕ ОКНО: ВИДЕО-ВИЗИТКА УЧИТЕЛЯ (9:16 VERTICAL PLAYER) -->
+  <!-- ========================================================================= -->
+  <div id="video-greeting-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-slate-900 rounded-3xl max-w-sm w-full p-4 border border-slate-700 shadow-2xl flex flex-col space-y-4">
+      
+      <div class="flex items-center justify-between text-white pb-2 border-b border-slate-800">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-rose-500 animate-pulse"></span>
+          <span class="font-mono text-xs font-bold uppercase tracking-wider text-slate-300">Видео-визитка (15 сек)</span>
+        </div>
+        <button onclick="closeVideoGreeting()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- 9:16 Vertical Video Screen Simulation -->
+      <div class="relative w-full aspect-[9/16] rounded-2xl bg-gradient-to-b from-slate-800 via-slate-950 to-slate-900 overflow-hidden flex flex-col justify-between p-4 border border-slate-700/80 shadow-inner">
+        <!-- Top Info in video -->
+        <div class="flex items-center justify-between text-white/80 text-[10px] font-mono">
+          <span class="bg-black/40 px-2 py-0.5 rounded-full backdrop-blur-xs">MAM LIVE 1080p</span>
+          <span class="bg-emerald-500/30 text-emerald-300 px-2 py-0.5 rounded-full border border-emerald-500/40">1:5 Standard</span>
+        </div>
+
+        <!-- Center animated wave & greeting -->
+        <div class="text-center space-y-3">
+          <div class="w-20 h-20 mx-auto rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center text-3xl shadow-lg">
+            👋
+          </div>
+          <div class="space-y-1">
+            <h4 id="video-teacher-name" class="font-black text-white text-base">Каримов Ислом</h4>
+            <p id="video-teacher-course" class="text-xs text-emerald-400 font-mono font-bold">Python Junior & AI Data</p>
+          </div>
+          <div class="p-3 rounded-xl bg-white/10 backdrop-blur-md text-xs text-slate-200 text-center leading-relaxed">
+            «Ассалому алейкум! Я жду вас на первом пробном уроке в филиале в Маргилане. Начнем писать код с первого дня!»
+          </div>
+        </div>
+
+        <!-- Video Player Controls Simulation -->
+        <div class="space-y-2">
+          <div class="w-full h-1 bg-white/20 rounded-full overflow-hidden">
+            <div id="video-progress" class="h-full bg-emerald-400 rounded-full w-2/3"></div>
+          </div>
+          <div class="flex items-center justify-between text-[10px] text-slate-400 font-mono">
+            <span>0:09</span>
+            <span>0:15</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom action -->
+      <button onclick="closeVideoGreeting(); selectCourseToEnroll(document.getElementById('video-teacher-course').textContent);" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs rounded-xl shadow-lg transition flex items-center justify-center gap-2 cursor-pointer">
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Записаться в группу к этому учителю</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 13. CORE VANILLA JAVASCRIPT (THEME, I18N, QUIZ, FLOOR MAP, VERIFY) -->
+  <!-- ========================================================================= -->
+  <script>
+    // -------------------------------------------------------------
+    // Translations Dictionary (RU / UZ)
+    // -------------------------------------------------------------
+    const I18N = {
+      ru: {
+        nav_courses: "Курсы",
+        nav_quiz: "Тест-Квиз",
+        nav_teachers: "Учителя",
+        nav_map: "3D Кабинеты",
+        nav_verify: "Проверка баланса",
+        nav_faq: "FAQ",
+        nav_contacts: "Контакты",
+        btn_free_trial: "Бесплатный урок",
+        hero_badge: "Новый набор в Маргилане: Мини-группы 1:5",
+        hero_title: "Освой IT и Иностранные Языки в Академии MAM в Маргилане",
+        hero_subtitle: "Премиальный образовательный стандарт: всего 5 учеников в группе, персональный ноутбук для каждого студента, топовые наставники и международный сертификат.",
+        btn_quiz: "Пройти тест и подобрать курс",
+        btn_sinov: "Записаться на Sinov Darsi",
+        stat_ratio: "Мини-группы",
+        stat_laptop: "Личный ноутбук",
+        stat_groups: "Активных групп",
+        stat_cert: "Сертификат MAM",
+        courses_badge: "Академические Программы",
+        courses_title: "Каталог Курсов IT и Иностранных Языков",
+        courses_subtitle: "Каждая группа строго ограничена 5 местами для максимального внимания наставника. Отслеживайте количество свободных мест в реальном времени.",
+        teachers_badge: "Команда Наставников MAM",
+        teachers_title: "Преподаватели-Эксперты IT и Иностранных Языков",
+        teachers_subtitle: "За каждым закреплены строго 3 уникальные группы. Посмотрите 15-секундную видео-визитку преподавателя перед записью.",
+        map_badge: "Филиал Маргилан • Ул. Б. Маргинони, 42",
+        map_title: "3D Интерактивная Карта Кабинетов Академии",
+        map_subtitle: "Нажмите на любой кабинет на изометрической 3D-схеме, чтобы узнать закрепленного преподавателя, направление и расписание смен.",
+        sinov_title: "Запишитесь на Пробный Урок (Sinov Darsi)",
+        sinov_subtitle: "Попробуйте обучение в мини-группе 1:5, познакомьтесь с преподавателем и проверьте уровень знаний абсолютно бесплатно.",
+        form_name: "ФИО Ученика или Родителя:",
+        form_phone: "Номер телефона (+998):",
+        form_course: "Выберите направление обучения:",
+        form_btn: "Записаться через Telegram ресепшена",
+        verify_badge: "Студенческий Сервис MAM",
+        verify_title: "Экспресс-Проверка Баланса и Сертификатов",
+        verify_subtitle: "Узнайте остаток оплаченных занятий по номеру телефона или проверьте подлинность диплома выпускника по ID.",
+        faq_title: "Ответы на Вопросы о MAM"
+      },
+      uz: {
+        nav_courses: "Kurslar",
+        nav_quiz: "Test-Viktorina",
+        nav_teachers: "Ustozlar",
+        nav_map: "3D Xonalar",
+        nav_verify: "Balansni tekshirish",
+        nav_faq: "FAQ",
+        nav_contacts: "Aloqa",
+        btn_free_trial: "Bepul dars",
+        hero_badge: "Marg'ilonda yangi qabul: Mini-guruhlar 1:5",
+        hero_title: "Marg'ilondagi MAM Akademiyasida IT va Xorijiy Tillarni O'rganing",
+        hero_subtitle: "Yuqori ta'lim standarti: guruhda faqat 5 nafar o'quvchi, har bir o'quvchiga shaxsiy noutbuk, kuchli ustozlar va xalqaro sertifikat.",
+        btn_quiz: "Testdan o'tish va kurs tanlash",
+        btn_sinov: "Sinov Darsiga yozilish",
+        stat_ratio: "Mini-guruhlar",
+        stat_laptop: "Shaxsiy noutbuk",
+        stat_groups: "Faol guruhlar",
+        stat_cert: "MAM Sertifikati",
+        courses_badge: "Akademik Dasturlar",
+        courses_title: "IT va Xorijiy Tillar Kurslari Katalogi",
+        courses_subtitle: "Har bir guruh ustozning maksimal e'tibori uchun qat'iy 5 o'ringa ega. Bo'sh o'rinlar sonini real vaqtda kuzating.",
+        teachers_badge: "MAM Ustozlar Jamoasi",
+        teachers_title: "IT va Chet Tillari Bo'yicha Mutaxassis Ustozlar",
+        teachers_subtitle: "Har bir o'qituvchiga qat'iy 3 ta guruh biriktirilgan. Darsga yozilishdan oldin 15 soniyalik video-tanishuvni tomosha qiling.",
+        map_badge: "Marg'ilon filiali • B. Marginoniy ko'ch., 42",
+        map_title: "Akademiya Xonalarining 3D Interaktiv Xaritasi",
+        map_subtitle: "Ustoz, yo'nalish va dars jadvalini bilish uchun izometrik 3D xaritadagi istalgan xonani bosing.",
+        sinov_title: "Bepul Sinov Darsiga Yoziling",
+        sinov_subtitle: "1:5 mini-guruhda dars o'tishni sinab ko'ring, ustoz bilan tanishing va bilim darajangizni bepul tekshiring.",
+        form_name: "O'quvchi yoki Ota-onaning F.I.Sh:",
+        form_phone: "Telefon raqami (+998):",
+        form_course: "Ta'lim yo'nalishini tanlang:",
+        form_btn: "Qabulxona Telegrami orqali yozilish",
+        verify_badge: "MAM Talabalar Xizmati",
+        verify_title: "Balans va Sertifikatlarni Tezkor Tekshirish",
+        verify_subtitle: "Telefon raqami orqali darslar qoldig'ini bilib oling yoki diplom haqiqiyligini tekshiring.",
+        faq_title: "MAM Haqida Ko'p Beriladigan Savollar"
+      }
+    };
+
+    let currentLang = localStorage.getItem('mam_web_lang') || 'ru';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ru' ? 'uz' : 'ru';
+      localStorage.setItem('mam_web_lang', currentLang);
+      applyLanguage(currentLang);
+    }
+
+    function applyLanguage(lang) {
+      document.getElementById('lang-btn-text').textContent = lang.toUpperCase();
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang] && I18N[lang][key]) {
+          el.textContent = I18N[lang][key];
+        }
+      });
+    }
+
+    // -------------------------------------------------------------
+    // Theme Toggle (Light / Dark)
+    // -------------------------------------------------------------
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('mam_web_theme', 'light');
+        document.getElementById('theme-btn').innerHTML = '<i class="fa-solid fa-moon text-amber-500"></i>';
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('mam_web_theme', 'dark');
+        document.getElementById('theme-btn').innerHTML = '<i class="fa-solid fa-sun text-amber-400"></i>';
+      }
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // Course Filtering (All, IT, Languages)
+    // -------------------------------------------------------------
+    function filterCourses(type) {
+      const itCards = document.querySelectorAll('.it-course');
+      const langCards = document.querySelectorAll('.lang-course');
+      const btnAll = document.getElementById('filter-all');
+      const btnIt = document.getElementById('filter-it');
+      const btnLang = document.getElementById('filter-lang');
+
+      const activeClass = 'px-3.5 py-2 rounded-xl bg-emerald-600 text-white font-bold transition shadow-xs cursor-pointer';
+      const inactiveClass = 'px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-emerald-500 font-bold transition cursor-pointer';
+
+      btnAll.className = type === 'all' ? activeClass : inactiveClass;
+      btnIt.className = type === 'it' ? activeClass : inactiveClass;
+      btnLang.className = type === 'lang' ? activeClass : inactiveClass;
+
+      if (type === 'all') {
+        itCards.forEach(c => c.style.display = 'flex');
+        langCards.forEach(c => c.style.display = 'flex');
+      } else if (type === 'it') {
+        itCards.forEach(c => c.style.display = 'flex');
+        langCards.forEach(c => c.style.display = 'none');
+      } else if (type === 'lang') {
+        itCards.forEach(c => c.style.display = 'none');
+        langCards.forEach(c => c.style.display = 'flex');
+      }
+    }
+
+    function selectCourseToEnroll(courseName) {
+      const sel = document.getElementById('sinov-course');
+      if (sel) {
+        for (let i = 0; i < sel.options.length; i++) {
+          if (sel.options[i].text.includes(courseName) || sel.options[i].value.includes(courseName)) {
+            sel.selectedIndex = i;
+            break;
+          }
+        }
+      }
+      const el = document.getElementById('sinov-darsi');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // -------------------------------------------------------------
+    // Interactive 3-Step Quiz
+    // -------------------------------------------------------------
+    let quizAnswers = {};
+
+    function selectQuizAnswer(step, answer) {
+      quizAnswers[step] = answer;
+      const bar = document.getElementById('quiz-progress-bar');
+      const stepNum = document.getElementById('quiz-step-num');
+
+      if (step === 1) {
+        document.getElementById('quiz-step-1').classList.add('hidden');
+        document.getElementById('quiz-step-2').classList.remove('hidden');
+        bar.style.width = '66.6%';
+        stepNum.textContent = '2';
+      } else if (step === 2) {
+        document.getElementById('quiz-step-2').classList.add('hidden');
+        document.getElementById('quiz-step-3').classList.remove('hidden');
+        bar.style.width = '100%';
+        stepNum.textContent = '3';
+      } else if (step === 3) {
+        document.getElementById('quiz-step-3').classList.add('hidden');
+        renderQuizResult();
+      }
+    }
+
+    function renderQuizResult() {
+      const resContainer = document.getElementById('quiz-result');
+      const courseTitle = document.getElementById('quiz-recommended-course');
+      const courseDesc = document.getElementById('quiz-recommended-desc');
+
+      resContainer.classList.remove('hidden');
+
+      const ans2 = quizAnswers[2] || '';
+      if (ans2.includes('IT-профессия') || ans2.includes('ботов')) {
+        courseTitle.textContent = 'Python Junior & AI Data';
+        courseDesc.textContent = 'Идеально подходит для старта в программировании и создания ИИ-ботов. Персональный ноутбук в лаборатории MAM.';
+      } else if (ans2.includes('Учеба за границей')) {
+        courseTitle.textContent = 'General English & IELTS Prep (или Немецкий Goethe)';
+        courseDesc.textContent = 'Интенсивный трек подготовки к сдаче экзаменов с носителем языка в мини-группе из 5 человек.';
+      } else {
+        courseTitle.textContent = 'Веб-разработка FullStack (Frontend + Backend)';
+        courseDesc.textContent = 'Создание коммерческих сайтов и интерфейсов. Выпускник имеет 8 реальных проектов в резюме.';
+      }
+    }
+
+    function submitQuizResult() {
+      const phone = document.getElementById('quiz-phone-input').value || 'Не указан';
+      const course = document.getElementById('quiz-recommended-course').textContent;
+      const msg = encodeURIComponent(`👋 Здравствуйте, MAM Academy (Маргилан)!\nЯ прошел тест на сайте.\nРекомендованный курс: ${course}\nПромокод на скидку 10%: MAM-PROMO10\nМой телефон: ${phone}`);
+      window.open(`https://t.me/maryam_academy?text=${msg}`, '_blank');
+    }
+
+    // -------------------------------------------------------------
+    // Video Greeting Modal (9:16)
+    // -------------------------------------------------------------
+    function openVideoGreeting(name, course, key) {
+      document.getElementById('video-teacher-name').textContent = name;
+      document.getElementById('video-teacher-course').textContent = course;
+      document.getElementById('video-greeting-modal').classList.remove('hidden');
+    }
+
+    function closeVideoGreeting() {
+      document.getElementById('video-greeting-modal').classList.add('hidden');
+    }
+
+    // -------------------------------------------------------------
+    // 3D Floor Map Interactive Rooms
+    // -------------------------------------------------------------
+    const ROOMS_DATA = {
+      0: {
+        badge: "ХОЛЛ & РЕСЕПШЕН",
+        title: "Центральный Холл & Зона Ожидания",
+        desc: "Ресепшен координаторов, зона отдыха для родителей, мини-кафетерий и касса приема платежей.",
+        teacher: "Усманова Нигора (Координатор)",
+        schedule: "Ежедневно 08:30 — 20:00",
+        capacity: "Стойка информации",
+        equipment: "Инфо-терминал, Wi-Fi 6"
+      },
+      1: {
+        badge: "АУДИТОРИЯ #1",
+        title: "Python Junior & AI Lab",
+        desc: "Специализированная лаборатория программирования. Эргономичные столы 1:5, климат-контроль Gree.",
+        teacher: "Каримов Ислом",
+        schedule: "Пн-Ср-Пт (09:00 / 14:00 / 16:30)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "5x Lenovo ThinkBook 15"
+      },
+      2: {
+        badge: "АУДИТОРИЯ #2",
+        title: "Web Development FullStack Lab",
+        desc: "Аудитория веб-инженерии. Два широкоформатных 4K-монитора наставника для разбора кода.",
+        teacher: "Смирнов Алексей",
+        schedule: "Вт-Чт-Сб (09:00 / 14:00 / 16:30)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "5x HP ProBook 450"
+      },
+      3: {
+        badge: "АУДИТОРИЯ #3",
+        title: "UI/UX & Graphic Design Studio",
+        desc: "Дизайн-лаборатория с калиброванными IPS-экранами для точной цветопередачи и планшетами.",
+        teacher: "Абдуллаева Лола",
+        schedule: "Пн-Ср-Пт (11:00 / 15:30)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "5x Asus Vivobook Pro IPS"
+      },
+      4: {
+        badge: "АУДИТОРИЯ #4",
+        title: "General English & IELTS Room",
+        desc: "Лингафонный кабинет с гарнитурами HyperX для отработки произношения и Listening.",
+        teacher: "Роберт Эванс",
+        schedule: "Пн-Ср-Пт (09:00 / 14:00 / 16:30)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "5x HyperX Cloud + Smart TV"
+      },
+      5: {
+        badge: "АУДИТОРИЯ #5",
+        title: "German Goethe Lab",
+        desc: "Кабинет немецкого языка с оригинальными учебными материалами Hueber и Klett.",
+        teacher: "Шмидт Ханс",
+        schedule: "Вт-Чт-Сб (10:00 / 15:00)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "Smart Board 65''"
+      },
+      6: {
+        badge: "АУДИТОРИЯ #6",
+        title: "Korean TOPIK Room",
+        desc: "Кабинет корейского языка и культуры. Аудиосистема и проектор высокого разрешения.",
+        teacher: "Ким Мин Джи",
+        schedule: "Вт-Чт-Сб (11:00 / 16:00)",
+        capacity: "5 мест (Стандарт 1:5)",
+        equipment: "Full HD проектор + Аудио"
+      }
+    };
+
+    let activeRoomIndex = 1;
+
+    function selectFloorRoom(roomNum) {
+      activeRoomIndex = roomNum;
+      const data = ROOMS_DATA[roomNum];
+      if (!data) return;
+
+      document.getElementById('card-room-badge').textContent = data.badge;
+      document.getElementById('card-room-title').textContent = data.title;
+      document.getElementById('card-room-desc').textContent = data.desc;
+      document.getElementById('card-room-teacher').textContent = data.teacher;
+      document.getElementById('card-room-schedule').textContent = data.schedule;
+      document.getElementById('card-room-capacity').textContent = data.capacity;
+      document.getElementById('card-room-equipment').textContent = data.equipment;
+    }
+
+    function enrollIntoActiveRoom() {
+      const data = ROOMS_DATA[activeRoomIndex];
+      selectCourseToEnroll(data.title);
+    }
+
+    // -------------------------------------------------------------
+    // Sinov Darsi Form Submission -> Telegram Redirection
+    // -------------------------------------------------------------
+    function handleSinovSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('sinov-name').value;
+      const phone = document.getElementById('sinov-phone').value;
+      const course = document.getElementById('sinov-course').value;
+
+      const text = encodeURIComponent(`👋 Новая заявка на БЕСПЛАТНЫЙ ПРОБНЫЙ УРОК (Sinov Darsi)!\nФИО: ${name}\nТелефон: ${phone}\nКурс: ${course}\nЛокация: Маргилан, филиал MAM`);
+      window.open(`https://t.me/maryam_academy?text=${text}`, '_blank');
+      alert(`Спасибо, ${name}! Ваша заявка сформирована и открывается в Telegram ресепшена.`);
+    }
+
+    // -------------------------------------------------------------
+    // Student Balance Verification
+    // -------------------------------------------------------------
+    function checkStudentBalance() {
+      const input = document.getElementById('check-phone-input');
+      const box = document.getElementById('balance-result-box');
+      const val = input.value.trim().replace(/\D/g, '');
+
+      if (!val || val.length < 4) {
+        alert('Пожалуйста, введите корректный номер телефона (+998...)');
+        return;
+      }
+
+      box.classList.remove('hidden');
+      box.innerHTML = `
+        <div class="flex justify-between items-center pb-2 border-b border-emerald-200 dark:border-emerald-800">
+          <span class="font-bold text-slate-800 dark:text-slate-100">Ученик найден в базе MAM</span>
+          <span class="px-2 py-0.5 rounded bg-emerald-500 text-white font-bold text-[10px]">АКТИВЕН</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2 text-[11px] pt-1">
+          <div><span class="text-slate-400">Курс:</span> <b>Python Junior</b></div>
+          <div><span class="text-slate-400">Группа:</span> <b>#101 (1:5)</b></div>
+          <div><span class="text-slate-400">Остаток уроков:</span> <b class="text-emerald-600 dark:text-emerald-400">8 из 12 уроков</b></div>
+          <div><span class="text-slate-400">Статус оплаты:</span> <b class="text-emerald-600">Оплачено 100%</b></div>
+        </div>
+      `;
+    }
+
+    // -------------------------------------------------------------
+    // Certificate Verification
+    // -------------------------------------------------------------
+    function checkCertificate() {
+      const input = document.getElementById('check-cert-input');
+      const box = document.getElementById('cert-result-box');
+      const id = input.value.trim();
+
+      if (!id || id.length < 3) {
+        alert('Пожалуйста, введите ID сертификата (например: MAM-2026-CERT-0104)');
+        return;
+      }
+
+      box.classList.remove('hidden');
+      box.innerHTML = `
+        <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-purple-300 dark:border-purple-700 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-mono font-bold text-purple-600 text-xs">${id.toUpperCase()}</span>
+            <span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[10px]">ПОДТВЕРЖДЕНО</span>
+          </div>
+          <div class="text-xs text-slate-800 dark:text-slate-200 space-y-1">
+            <p><b>Выпускник:</b> Алиев Тимур Якубович</p>
+            <p><b>Программа:</b> Python Junior & AI Data (6 месяцев, 72 ак. часа)</p>
+            <p><b>Дата выпуска:</b> 24 сентября 2026 г. • г. Маргилан</p>
+            <p class="text-[11px] text-slate-500 font-mono">Подписано: Генеральный Директор Богданов Т.Я. (Печать MAM)</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize Language & Icons on load
+    applyLanguage(currentLang);
+    if (window.lucide) lucide.createIcons();
+  </script>
+</body>
+</html>
